@@ -12,11 +12,20 @@ const MovieSlider = ({category}) => {
   const sliderRef = useRef(null)
   const formattedCategoryName= category.replaceAll("_", " ")[0].toUpperCase() + category.replaceAll("_", " ").slice(1);
   const formattedContentType = contentType === "movies" ? "Movies" : "TV Shows";
+/***
+ * /api/v1/movie/popular
+ * /api/v1/movie/now_playing
+ /api/v1/movie/top_rated
+ /api/v1/movie/upcoming
+ * 
+ */
 
   useEffect(() => {
     const fetchContent = async () => {
       try {
         const res = await axios.get(`/api/v1/${contentType}/${category}`)
+		//console.log(res.data.content)  
+		//{adult: false, backdrop_path: '/zfbjgQE1uSd9wiPTX4VzsLi0rGG.jpg', genre_ids: Array(2), id: 278, original_language: 'en', …}
         setContent(res.data.content)
       } catch (error) {
         console.log("fetchContent", error)
