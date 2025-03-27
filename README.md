@@ -1,13 +1,17 @@
 ﻿# netflix-clone
 https://netflix-clone-ll3v.onrender.com/
-## Tech Stack
 <h1 align="center">MERN Netflix Clone 🎬</h1>
 
 ![Demo App](/frontend/public/screenshot-for-readme.png)
 
+![2025-03-27_142124](https://github.com/user-attachments/assets/708074fe-44ca-41d6-a65e-b472c1df0aaa)
 
+![2025-03-27_142146](https://github.com/user-attachments/assets/dc50f1ce-5ec6-4b0b-b24d-f57d78d7c681)
 
-About This Course:
+![2025-03-27_142333](https://github.com/user-attachments/assets/9ed7d3a4-0d3b-4307-bfb3-b41eeeeba815)
+![2025-03-27_142645](https://github.com/user-attachments/assets/e7669a65-31b1-4784-b5db-48ccba401f47)
+
+Key Features:
 
 -   ⚛️ Tech Stack: React.js, Node.js, Express.js, MongoDB, TailwindCSS, zustand State mamangement
 -   🔐 Authentication with JWT
