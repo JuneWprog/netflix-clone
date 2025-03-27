@@ -1,3 +1,9 @@
+/**
+ * 
+ * @returns Skeleton for the watch page
+ * The WatchPageSkeleton component is a loading placeholder for the watch page.
+ * It displays a series of animated gray boxes to indicate that content is being loaded.
+ */
 const WatchPageSkeleton = () => {
 	return (
 		<div className='animate-pulse'>

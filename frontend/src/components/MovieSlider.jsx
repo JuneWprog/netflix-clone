@@ -11,7 +11,7 @@ const MovieSlider = ({ category }) => {
 	const [showArrows, setShowArrows] = useState(false);
 
 	const sliderRef = useRef(null);
-
+	//format category for display and capitalize first letter
 	const formattedCategoryName =
 		category.replaceAll("_", " ")[0].toUpperCase() + category.replaceAll("_", " ").slice(1);
 	const formattedContentType = contentType === "movie" ? "Movies" : "TV Shows";
@@ -24,7 +24,7 @@ const MovieSlider = ({ category }) => {
 
 		getContent();
 	}, [contentType, category]);
-
+	///scroll left and right functions to scroll the slider
 	const scrollLeft = () => {
 		if (sliderRef.current) {
 			sliderRef.current.scrollBy({ left: -sliderRef.current.offsetWidth, behavior: "smooth" });

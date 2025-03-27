@@ -1,7 +1,14 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
-
+/**
+ * zustand store for managing authentication state 
+ * create() is a function from zustand that creates a store 
+ * use it in componets to access the global states and actions to avoid prop drilling
+ * @param {function} set - function to update the state
+ * returns {object} - object containing the state and actions
+ * example of calling the store in a component: {user, login, logout} = useAuthStore()
+ */
 export const useAuthStore = create((set) => ({
 	user: null,
 	isSigningUp: false,
