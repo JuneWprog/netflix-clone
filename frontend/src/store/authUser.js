@@ -2,11 +2,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
-//create a store with multiple pieces of state
-//create returns a custom hook that allows you to access and update the state within your components.
-//set is a function that allows you to update the state
-//user is the current user object
-//signup is a function that allows you to sign up a user
 export const useAuthStore = create((set) => ({
 	user: null,
 	isSigningUp: false,

@@ -1,41 +1,32 @@
-import React, {useState, useEffect, useRef} from 'react'
-import {useContentStore} from '../store/Content'
-import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { useEffect, useRef, useState } from "react";
+import { useContentStore } from "../store/content";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const MovieSlider = ({category}) => {
-  const {contentType} = useContentStore()
-  const [content, setContent] = useState([])
-  const [showArrows, setShowArrows] = useState(false)
-  const sliderRef = useRef(null)
-  const formattedCategoryName= category.replaceAll("_", " ")[0].toUpperCase() + category.replaceAll("_", " ").slice(1);
-  const formattedContentType = contentType === "movies" ? "Movies" : "TV Shows";
-/***
- * /api/v1/movie/popular
- * /api/v1/movie/now_playing
- /api/v1/movie/top_rated
- /api/v1/movie/upcoming
- * 
- */
+const MovieSlider = ({ category }) => {
+	const { contentType } = useContentStore();
+	const [content, setContent] = useState([]);
+	const [showArrows, setShowArrows] = useState(false);
 
-  useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const res = await axios.get(`/api/v1/${contentType}/${category}`)
-		//console.log(res.data.content)  
-		//{adult: false, backdrop_path: '/zfbjgQE1uSd9wiPTX4VzsLi0rGG.jpg', genre_ids: Array(2), id: 278, original_language: 'en', …}
-        setContent(res.data.content)
-      } catch (error) {
-        console.log("fetchContent", error)
-      }
-    }
-    fetchContent()
-  }, [contentType, category]);
+	const sliderRef = useRef(null);
 
-  const scrollLeft =()=>{
-    if (sliderRef.current) {
+	const formattedCategoryName =
+		category.replaceAll("_", " ")[0].toUpperCase() + category.replaceAll("_", " ").slice(1);
+	const formattedContentType = contentType === "movie" ? "Movies" : "TV Shows";
+
+	useEffect(() => {
+		const getContent = async () => {
+			const res = await axios.get(`/api/v1/${contentType}/${category}`);
+			setContent(res.data.content);
+		};
+
+		getContent();
+	}, [contentType, category]);
+
+	const scrollLeft = () => {
+		if (sliderRef.current) {
 			sliderRef.current.scrollBy({ left: -sliderRef.current.offsetWidth, behavior: "smooth" });
 		}
 	};
@@ -43,7 +34,7 @@ const MovieSlider = ({category}) => {
 		sliderRef.current.scrollBy({ left: sliderRef.current.offsetWidth, behavior: "smooth" });
 	};
 
- return (
+	return (
 		<div
 			className='bg-black text-white relative px-5 md:px-20'
 			onMouseEnter={() => setShowArrows(true)}
@@ -92,5 +83,4 @@ const MovieSlider = ({category}) => {
 		</div>
 	);
 };
-
-export default MovieSlider
+export default MovieSlider;

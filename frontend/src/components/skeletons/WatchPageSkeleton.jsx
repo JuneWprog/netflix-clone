@@ -1,8 +1,3 @@
-/**
- * 
- * @returns Skeleton UI for the watch page while the content is loading
- * animated shimmer effect
- */
 const WatchPageSkeleton = () => {
 	return (
 		<div className='animate-pulse'>

@@ -1,27 +1,24 @@
-import {useState} from 'react'
-import {useAuthStore} from '../store/authUser'
-import {Link} from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuthStore } from "../store/authUser";
 
 const SignUpPage = () => {
-    const { searchParams } = new URL(document.location);
+	const { searchParams } = new URL(document.location);
 	const emailValue = searchParams.get("email");
 
-    const [email, setEmail] = useState(emailValue ||'')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const {signup, isSigningUp}= useAuthStore();
-	const navigate = useNavigate();
+	const [email, setEmail] = useState(emailValue || "");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 
-    const handleSignUp = (e) => {
-        e.preventDefault();
-        signup({ email, password, username });
-		navigate("/login");
+	const { signup, isSigningUp } = useAuthStore();
 
-    };
-    return (
-        <div className='h-screen w-full hero-bg'>
+	const handleSignUp = (e) => {
+		e.preventDefault();
+		signup({ email, username, password });
+	};
+
+	return (
+		<div className='h-screen w-full hero-bg'>
 			<header className='max-w-6xl mx-auto flex items-center justify-between p-4'>
 				<Link to={"/"}>
 					<img src='/netflix-logo.png' alt='logo' className='w-52' />
@@ -95,7 +92,4 @@ const SignUpPage = () => {
 		</div>
 	);
 };
-
-
-
-export default SignUpPage
+export default SignUpPage;
