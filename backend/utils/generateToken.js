@@ -3,7 +3,7 @@ import {ENV_VARS} from '../config/envVars.js';
 
 export const generateTokenAndSetCookie = (userId, res) => {
     const token = jwt.sign({userId}, ENV_VARS.JWT_SECRET, 
-        {expiresIn: ENV_VARS.JWT_EXPIRATION});
+        {expiresIn: '15d'});
     res.cookie('jwt-netflix',token,{
         maxAge: 15*24*61*61*1000, // 15 days in milliseconds
         httpOnly: true,

@@ -1,9 +1,10 @@
-import User from '../models/user.model';
-import bcrypt from 'bcryptjs';
+import User from '../models/user.model.js';
+import bcrypt from "bcryptjs";
 import {generateTokenAndSetCookie} from '../utils/generateToken.js';
 
 export const signup = async (req, res) => {
     const {username, email, password} = req.body;
+   
     try{
         if(!email || !password || !username){
             return res.status(400).json({message: "All fields are required"});
@@ -27,6 +28,7 @@ export const signup = async (req, res) => {
             return res.status(400).json({ success: false, message: "Username already exists" });
         }
         const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
         const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
 
 		const image = PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
@@ -37,16 +39,21 @@ export const signup = async (req, res) => {
 			username,
 			image,
 		});
-        generateTokenAndSetCookie(newUser._id, res);
-		await newUser.save();
 
-		res.status(201).json({
-			success: true,
-			user: {
-				...newUser._doc,
-				password: "",
-			},
-		});
+
+
+        if (newUser) {
+            generateTokenAndSetCookie(newUser._id, res);
+            await newUser.save();
+
+            res.status(201).json({
+                _id: newUser._id,
+                username: newUser.username,
+                email: newUser.email,
+            });
+        } else {
+            res.status(400).json({ error: "Invalid user data" });
+        }
 
     }catch(error){
         console.log("Error in signup controller", error.message);
@@ -97,7 +104,7 @@ export const logout = async (req, res) => {
 
 export const authCheck = async (req, res) => {
     try{
-        console.log("req.user:", req.user);
+        
 		res.status(200).json({ success: true, user: req.user });
 
     }catch(error){
