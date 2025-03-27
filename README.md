@@ -8,8 +8,6 @@ https://netflix-clone-ll3v.onrender.com/
 
 ![2025-03-27_142124](https://github.com/user-attachments/assets/708074fe-44ca-41d6-a65e-b472c1df0aaa)
 
-![2025-03-27_142146](https://github.com/user-attachments/assets/dc50f1ce-5ec6-4b0b-b24d-f57d78d7c681)
-
 ![2025-03-27_142333](https://github.com/user-attachments/assets/9ed7d3a4-0d3b-4307-bfb3-b41eeeeba815)
 
 Key Features:
