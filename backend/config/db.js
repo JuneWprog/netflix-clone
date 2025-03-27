@@ -3,8 +3,12 @@ import { ENV_VARS } from "./envVars.js";
 
 export const connectDB = async () => {
 	try {
-		console.log("db_uri",ENV_VARS.MONGO_URI);
-		const conn = await mongoose.connect(ENV_VARS.MONGO_URI);
+		
+		const conn = await mongoose.connect(ENV_VARS.MONGO_URI,{
+			serverSelectionTimeoutMS: 5000, // 5 seconds
+			retryWrites: true,
+			w: 'majority',
+		  });
 		console.log("MongoDB connected: " + conn.connection.host);
 	} catch (error) {
 		console.error("Error connecting to MONGODB: " + error.message);
